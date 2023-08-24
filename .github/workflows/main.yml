@@ -1,0 +1,69 @@
+name: luabinaries
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+    branches:
+      - main
+  pull_request:
+    paths-ignore:
+      - '*.md'
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  musl-build:
+    name: 🏗️ build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: short SHA of current commit
+        id: sha
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: install compiler and dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make musl musl-tools
+      - run: make
+      - name: Upload artifact linux-amd64
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-amd64
+          path: |
+            lua51
+            luac51
+            lua53
+            luac53
+            lua54
+            luac54
+    outputs:
+       git_sha_short: ${{ steps.sha.outputs.sha_short }}
+
+  draft-binary-release:
+    name: 📦 Pack
+    needs: [musl-build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: download binary artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: |
+            release
+      - name: show directory structure
+        run: tree
+      - name: relase all binary artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release/linux-amd64/*
+          tag_name: ${{ needs.musl-build.outputs.git_sha_short }}
+          draft: false
+          prerelease: false
+          fail_on_unmatched_files: true
+          generate_release_notes: true
