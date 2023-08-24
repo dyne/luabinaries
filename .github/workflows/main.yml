@@ -29,19 +29,20 @@ jobs:
       - name: install compiler and dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y make musl musl-tools
-      - run: make
+          sudo apt-get install -y make musl musl-tools upx-ucl
+      - name: build all lua binaries
+        run: make
+      - name: compress all lua binaries
+        run: |
+          upx-ucl -9 lua5*
+          upx-ucl -9 luac5*
       - name: Upload artifact linux-amd64
         uses: actions/upload-artifact@v3
         with:
           name: linux-amd64
           path: |
-            lua51
-            luac51
-            lua53
-            luac53
-            lua54
-            luac54
+            lua5*
+            luac5*
     outputs:
        git_sha_short: ${{ steps.sha.outputs.sha_short }}
 
