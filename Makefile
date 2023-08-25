@@ -66,11 +66,11 @@ lua54:
 lua51-windows: VERSION := 5.1.5
 lua51-windows:
 	-$(call build_lua_win64,lua-${VERSION})
+	-@mv lua-$(VERSION)/src/lua.exe build/win64/lua51.exe
+	-@mv lua-$(VERSION)/src/luac.exe build/win64/luac51.exe
 	-@mv lua-$(VERSION)/src/lua51.dll build/win64/lua51.dll
 	@rm -rf lua-$(VERSION)
 
-#	-@mv lua-$(VERSION)/src/lua.exe build/win64/lua51.exe
-#	-@mv lua-$(VERSION)/src/luac.exe build/win64/luac51.exe
 
 
 lua53-windows: VERSION := 5.3.6
