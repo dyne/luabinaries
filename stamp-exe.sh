@@ -4,18 +4,20 @@
 # targeting windows. it creates a .rs to be used when linking
 
 # first argument is lua-N.N.N
-version=`echo $1 | cut -d'-' -f2`
-vercommas=`echo $version | sed -e 's/\./,/g'`
-vershort="`echo "$version" | cut -d. -f1,2 --output-delimiter=''`
-#>&2 echo "version: $version"
-#>&2 echo " commas: $vercommas"
+>&2 echo "Stamp exe: $1"
+version="`echo $1 | cut -d'-' -f2`"
+vercommas="`echo $version | sed -e 's/\./,/g'`"
+vershort="`echo $version | cut -d. -f1,2 --output-delimiter=''`"
+>&2 echo "version: $version"
+>&2 echo " commas: $vercommas"
+>&2 echo "  short: $vershort"
 
-date=`date +'%Y%m%d'`
-datecommas=`date +'%Y,%m,%d'`
+date=`date +'%y%m%d'`
+datecommas=`date +'%y,%m,%d'`
 
 cat << EOF
 1 VERSIONINFO
-FILEVERSION     ${datecommas},0
+FILEVERSION     1,0,0,0
 PRODUCTVERSION  ${vercommas},0
 BEGIN
   BLOCK "StringFileInfo"

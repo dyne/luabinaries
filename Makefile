@@ -17,9 +17,9 @@ define build_lua_win64
 	rm -rf $(1)
 	tar xf $(1).tar.gz
 	sed -i -e 's/^CC=/CC?=/' -e 's/^LIBS=/LIBS?=/' -e 's/^CFLAGS=/CFLAGS?=/' -e 's/^LDFLAGS=/LDFLAGS?=/' $(1)/src/Makefile
-	bash stamp-exe.sh "$(1)" > lua.rc \
-	&& x86_64-w64-mingw32-windres lua.rc -O coff -o $(1)/src/lua.res \
-	&& rm -r lua.rc
+	bash stamp-exe.sh "$(1)" > lua.rc
+	x86_64-w64-mingw32-windres lua.rc -O coff -o $(1)/src/lua.res
+	rm -r lua.rc
 	@cd $(1) && \
 	CC="$(shell which x86_64-w64-mingw32-gcc)" \
 	LD="$(shell which x86_64-w64-mingw32-ld)" \
