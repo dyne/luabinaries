@@ -17,6 +17,9 @@ define build_lua_win64
 	rm -rf $(1)
 	tar xf $(1).tar.gz
 	sed -i -e 's/^CC=/CC?=/' -e 's/^LIBS=/LIBS?=/' -e 's/^CFLAGS=/CFLAGS?=/' -e 's/^LDFLAGS=/LDFLAGS?=/' $(1)/src/Makefile
+	bash stamp-exe.sh "$(1)" > lua.rc \
+	&& x86_64-w64-mingw32-windres lua.rc -O coff -o $(1)/src/lua.res \
+	&& rm -r lua.rc
 	@cd $(1) && \
 	CC="$(shell which x86_64-w64-mingw32-gcc)" \
 	LD="$(shell which x86_64-w64-mingw32-ld)" \
@@ -24,9 +27,10 @@ define build_lua_win64
 	RANLIB="$(shell which x86_64-w64-mingw32-ranlib)" \
 	CFLAGS="-mthreads" \
 	LDFLAGS=" -L/usr/x86_64-w64-mingw32/lib" \
-	LIBS="-l:libm.a -l:libpthread.a -lssp" \
+	LIBS="lua.res -l:libm.a -l:libpthread.a -lssp" \
 	make mingw
 	@x86_64-w64-mingw32-strip $(1)/src/luac.exe $(1)/src/lua.exe
+
 endef
 
 .PHONY: lua51 lua53 lua54
