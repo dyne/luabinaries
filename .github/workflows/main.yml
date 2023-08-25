@@ -35,7 +35,7 @@ jobs:
       - name: compress all binaries
         run: |
           upx-ucl -9 build/linux/*
-          upx-ucl -9 build/win64/*.exe
+          upx-ucl -9 build/win64/*
       - name: Upload artifact linux-amd64
         uses: actions/upload-artifact@v3
         with:
