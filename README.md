@@ -1,9 +1,12 @@
 # Luabinaries
 
-This repository houses the most recent stable versions of the Lua language and creates static binaries that are compatible with any GNU+Linux x86 64bit device.
+This repository houses the most recent stable versions of the Lua language and creates static binaries ready to download and run.
 
-Our aim is to create Lua interpreters that are very compact and can be used directly after downloading, and they are completely static binaries that can run on any distribution. As part of our efforts to achieve this goal, we remove the debugging symbols and compress them.
+We aim to create Lua interpreters that are optimized, compact and can run on most Lua supported platforms. 
 
+So far we support:
+- Linux x86 64bit (also known as amd64) - filename pattern `luaVV`
+- Windows x86 64bit (win64) - filename pattern `luaVV.exe`
 ## Download
 
 Direct download to our released binaries is possible using the following links:
@@ -12,7 +15,7 @@ Direct download to our released binaries is possible using the following links:
 - lua 5.3 for linux 64 https://github.com/dyne/luabinaries/releases/latest/download/lua53
 - lua 5.4 for linux 64 https://github.com/dyne/luabinaries/releases/latest/download/lua54
 
-Lua bytecode compilers are available simply by changing the file name to `luacNN`.
+Lua bytecode compilers are available simply by changing the file name to `luacVV`.
 
 Releases are tagged with the GitHub hash and listed in the [Release page](https://github.com/dyne/luabinaries/releases/).
 
