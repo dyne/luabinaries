@@ -72,7 +72,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            release/linux-amd64/*
+            release/linux-amd64/linux/*
             release/windows-win64/*
           tag_name: ${{ needs.musl-build.outputs.git_sha_short }}
           draft: false
