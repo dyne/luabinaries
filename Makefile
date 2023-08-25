@@ -7,7 +7,7 @@ define build_lua_linux
 	rm -rf $(1)
 	tar xf $(1).tar.gz
 	sed -i -e 's/^CC=/CC?=/' -e 's/^LIBS=/LIBS?=/' -e 's/^CFLAGS=/CFLAGS?=/' -e 's/^LDFLAGS=/LDFLAGS?=/' $(1)/src/Makefile
-	@cd $(1) && CC="musl-gcc" CFLAGS="-Os -static -fPIC" LDFLAGS="-static" LIBS="" make posix
+	@cd $(1) && CC="musl-gcc" CFLAGS="-O3 -static -fPIC" LDFLAGS="-static" LIBS="" make posix
 	@strip $(1)/src/luac $(1)/src/lua
 endef
 
@@ -25,7 +25,7 @@ define build_lua_win64
 	LD="$(shell which x86_64-w64-mingw32-ld)" \
 	AR="$(shell which x86_64-w64-mingw32-ar)" \
 	RANLIB="$(shell which x86_64-w64-mingw32-ranlib)" \
-	CFLAGS="-mthreads" \
+	CFLAGS="-O3 -mthreads" \
 	LDFLAGS=" -L/usr/x86_64-w64-mingw32/lib" \
 	LIBS="lua.res -l:libm.a -l:libpthread.a -lssp" \
 	make mingw
