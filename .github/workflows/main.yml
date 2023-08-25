@@ -36,12 +36,17 @@ jobs:
         run: |
           upx-ucl -9 build/linux/*
           upx-ucl -9 build/win64/*
+      - name: calculate SHA sums
+        run: |
+           sha256sum build/linux/* > build/SHA256SUMS.txt
+           sha256sum build/win64/* >> build/SHA256SUMS.txt
       - name: Upload artifact linux-amd64
         uses: actions/upload-artifact@v3
         with:
           name: linux-amd64
           path: |
             build/linux/*
+            build/SHA256SUMS.txt
       - name: Upload artifact windows-win64
         uses: actions/upload-artifact@v3
         with:
