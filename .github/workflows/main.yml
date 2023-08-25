@@ -29,20 +29,25 @@ jobs:
       - name: install compiler and dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y make musl musl-tools upx-ucl
-      - name: build all lua binaries
+          sudo apt-get install -y make musl musl-tools upx-ucl gcc-mingw-w64
+      - name: build all binaries
         run: make
-      - name: compress all lua binaries
+      - name: compress all binaries
         run: |
-          upx-ucl -9 lua5*
-          upx-ucl -9 luac5*
+          upx-ucl -9 build/linux/*
+          upx-ucl -9 build/win64/*.exe
       - name: Upload artifact linux-amd64
         uses: actions/upload-artifact@v3
         with:
           name: linux-amd64
           path: |
-            lua5*
-            luac5*
+            build/linux/*
+      - name: Upload artifact windows-win64
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-win64
+          path: |
+            build/win64/*
     outputs:
        git_sha_short: ${{ steps.sha.outputs.sha_short }}
 
@@ -63,6 +68,7 @@ jobs:
         with:
           files: |
             release/linux-amd64/*
+            release/windows-win64/*
           tag_name: ${{ needs.musl-build.outputs.git_sha_short }}
           draft: false
           prerelease: false
