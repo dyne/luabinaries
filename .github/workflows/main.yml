@@ -20,7 +20,7 @@ jobs:
     name: 🏗️ build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: short SHA of current commit
@@ -41,14 +41,14 @@ jobs:
            sha256sum build/linux/* > build/SHA256SUMS.txt
            sha256sum build/win64/* >> build/SHA256SUMS.txt
       - name: Upload artifact linux-amd64
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-amd64
           path: |
             build/linux/*
             build/SHA256SUMS.txt
       - name: Upload artifact windows-win64
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-win64
           path: |
@@ -62,14 +62,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: download binary artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: |
             release
       - name: show directory structure
         run: tree
       - name: relase all binary artifacts
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             release/linux-amd64/linux/*
