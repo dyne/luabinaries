@@ -56,7 +56,7 @@ lua53:
 	@mv lua-$(VERSION)/src/luac build/linux/luac53
 	@rm -rf lua-$(VERSION)
 
-lua54: VERSION := 5.4.6
+lua54: VERSION := 5.4.7
 lua54:
 	$(call build_lua_linux,lua-${VERSION})
 	@mv lua-$(VERSION)/src/lua build/linux/lua54
@@ -81,7 +81,7 @@ lua53-windows:
 	-@mv lua-$(VERSION)/src/lua53.dll build/win64/lua53.dll
 	@rm -rf lua-$(VERSION)
 
-lua54-windows: VERSION := 5.4.6
+lua54-windows: VERSION := 5.4.7
 lua54-windows:
 	-$(call build_lua_win64,lua-${VERSION})
 	-@mv lua-$(VERSION)/src/lua.exe build/win64/lua54.exe

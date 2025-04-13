@@ -33,7 +33,7 @@ The versions of the released binaries are listed below, the respective sources a
 
 - lua-5.1.5.tar.gz (Feb 13  2012) `7d5ea1b9cb6aa0b59ca3dde1c6adcb57ef83a1ba8e5432c0ecd06bf439b3ad88`
 - lua-5.3.6.tar.gz (Sep 14  2020) `fc5fd69bb8736323f026672b1b7235da613d7177e72558893a0bdcd320466d60`
-- lua-5.4.6.tar.gz (May  2 2023) `2640fc56a795f29d28ef15e13c34a47e223960b0240e8cb0a82d9b0738695333`
+- lua-5.4.7.tar.gz (Jun 13  2024) `9fbf5e28ef86c69858f6d3d34eccc32e911c1a28b4120ff3e84aaa70cfbf1e30`
 
 To build static binaries ready to run everywhere, we use [Musl](https://www.musl-libc.org/).
 
