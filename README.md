@@ -21,9 +21,15 @@ Releases are tagged with the GitHub hash and listed in the [Release page](https:
 
 ## Building
 
-The [Makefile](https://github.com/dyne/luabinaries/blob/main/Makefile) does everything needed using the original Lua source-code releases archived in this repository.
+Make sure you installed the dependencies needed for building in your Linux system:
 
-They are available on https://lua.org/ftp and listed below:
+```
+sudo apt-get install -y make musl musl-tools gcc-mingw-w64
+```
+
+The [Makefile](https://github.com/dyne/luabinaries/blob/main/Makefile) does everything needed using the original Lua source-code releases archived in this repository. Just run `make` to compile the linux binaries and cross-compile the Windows-executables.
+
+The versions of the released binaries are listed below, the respective sources are available at https://lua.org/ftp:
 
 - lua-5.1.5.tar.gz (Feb 13  2012) `7d5ea1b9cb6aa0b59ca3dde1c6adcb57ef83a1ba8e5432c0ecd06bf439b3ad88`
 - lua-5.3.6.tar.gz (Sep 14  2020) `fc5fd69bb8736323f026672b1b7235da613d7177e72558893a0bdcd320466d60`
@@ -31,7 +37,7 @@ They are available on https://lua.org/ftp and listed below:
 
 To build static binaries ready to run everywhere, we use [Musl](https://www.musl-libc.org/).
 
-To compress the released binaries at ~50% of their original size we use [upx-ucl](https://upx.github.io/).
+The released binaries are compressed to ~50% of their original size using [upx-ucl](https://upx.github.io/).
 
 ## Acknowledgements
 
