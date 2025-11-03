@@ -16,8 +16,49 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  musl-build:
-    name: 🏗️ build
+  linux-build:
+    name: 🏗️ build (Linux ${{ matrix.arch }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [x64, arm64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: short SHA of current commit
+        id: sha
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: install apt-fast
+        uses: elijahr/setup-apt-fast@v0.0.1-dev.2
+      - name: install compiler and dependencies
+        run: |
+          sudo apt-fast update
+          if [ "${{ matrix.arch }}" = "arm64" ]; then
+            sudo apt-fast install -y make musl-tools upx-ucl gcc-aarch64-linux-gnu
+          else
+            sudo apt-fast install -y make musl musl-tools upx-ucl
+          fi
+      - name: build Linux binaries
+        run: make linux-${{ matrix.arch }}
+      - name: compress all binaries
+        shell: bash
+        run: |
+          upx-ucl -9 build/linux-${{ matrix.arch }}/*
+      - name: calculate SHA sums
+        shell: bash
+        run: |
+          sha256sum build/linux-${{ matrix.arch }}/* > build/linux-${{ matrix.arch }}/SHA256SUMS-linux-${{ matrix.arch }}.txt
+      - name: Upload artifact linux-${{ matrix.arch }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-${{ matrix.arch }}
+          path: build/linux-${{ matrix.arch }}/
+    outputs:
+       git_sha_short: ${{ steps.sha.outputs.sha_short }}
+
+  windows-build:
+    name: 🏗️ build (Windows x64)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,39 +67,63 @@ jobs:
       - name: short SHA of current commit
         id: sha
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: install apt-fast
+        uses: elijahr/setup-apt-fast@v0.0.1-dev.2
       - name: install compiler and dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y make musl musl-tools upx-ucl gcc-mingw-w64
-      - name: build all binaries
-        run: make
+          sudo apt-fast update
+          sudo apt-fast install -y make upx-ucl gcc-mingw-w64
+      - name: build Windows binaries
+        run: make windows
       - name: compress all binaries
+        shell: bash
         run: |
-          upx-ucl -9 build/linux/*
           upx-ucl -9 build/win64/*
       - name: calculate SHA sums
+        shell: bash
         run: |
-           sha256sum build/linux/* > build/SHA256SUMS.txt
-           sha256sum build/win64/* >> build/SHA256SUMS.txt
-      - name: Upload artifact linux-amd64
+          sha256sum build/win64/* > build/win64/SHA256SUMS-windows-x64.txt
+      - name: Upload artifact windows-x64
         uses: actions/upload-artifact@v4
         with:
-          name: linux-amd64
-          path: |
-            build/linux/*
-            build/SHA256SUMS.txt
-      - name: Upload artifact windows-win64
+          name: windows-x64
+          path: build/win64/
+    outputs:
+       git_sha_short: ${{ steps.sha.outputs.sha_short }}
+
+  macos-build:
+    name: 🏗️ build (macOS ${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - arch: x64
+            runner: macos-13
+          - arch: arm64
+            runner: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: short SHA of current commit
+        id: sha
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: build macOS binaries
+        run: make macos-${{ matrix.arch }}
+      - name: calculate SHA sums
+        run: |
+           shasum -a 256 build/macos-${{ matrix.arch }}/* > build/macos-${{ matrix.arch }}/SHA256SUMS-macos-${{ matrix.arch }}.txt
+      - name: Upload artifact macos-${{ matrix.arch }}
         uses: actions/upload-artifact@v4
         with:
-          name: windows-win64
-          path: |
-            build/win64/*
+          name: macos-${{ matrix.arch }}
+          path: build/macos-${{ matrix.arch }}/
     outputs:
        git_sha_short: ${{ steps.sha.outputs.sha_short }}
 
   draft-binary-release:
     name: 📦 Pack
-    needs: [musl-build]
+    needs: [linux-build, windows-build, macos-build]
     runs-on: ubuntu-latest
     steps:
       - name: download binary artifacts
@@ -68,15 +133,19 @@ jobs:
             release
       - name: show directory structure
         run: tree
-      - name: relase all binary artifacts
+      - name: list all files to release
+        run: |
+          find release -type f
+      - name: release all binary artifacts
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            release/linux-amd64/linux/*
-            release/linux-amd64/SHA256SUMS.txt
-            release/windows-win64/*
-          tag_name: ${{ needs.musl-build.outputs.git_sha_short }}
+            release/linux-x64/*
+            release/linux-arm64/*
+            release/windows-x64/*
+            release/macos-x64/*
+            release/macos-arm64/*
+          tag_name: ${{ needs.linux-build.outputs.git_sha_short }}
           draft: false
           prerelease: false
-          fail_on_unmatched_files: true
           generate_release_notes: true
