@@ -23,7 +23,7 @@ jobs:
       matrix:
         arch: [x64, arm64]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: short SHA of current commit
@@ -61,7 +61,7 @@ jobs:
     name: 🏗️ build (Windows x64)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: short SHA of current commit
@@ -102,7 +102,7 @@ jobs:
           - arch: arm64
             runner: macos-14
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: short SHA of current commit
