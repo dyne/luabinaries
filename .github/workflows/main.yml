@@ -30,7 +30,7 @@ jobs:
         id: sha
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: install apt-fast
-        uses: elijahr/setup-apt-fast@v0.0.1-dev.2
+        uses: elijahr/setup-apt-fast@v1.0.1-dev.3
       - name: install compiler and dependencies
         run: |
           sudo apt-fast update
@@ -68,7 +68,7 @@ jobs:
         id: sha
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: install apt-fast
-        uses: elijahr/setup-apt-fast@v0.0.1-dev.2
+        uses: elijahr/setup-apt-fast@v1.0.1-dev.3
       - name: install compiler and dependencies
         run: |
           sudo apt-fast update
