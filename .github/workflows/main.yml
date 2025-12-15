@@ -50,7 +50,7 @@ jobs:
         run: |
           sha256sum build/linux-${{ matrix.arch }}/* > build/linux-${{ matrix.arch }}/SHA256SUMS-linux-${{ matrix.arch }}.txt
       - name: Upload artifact linux-${{ matrix.arch }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: linux-${{ matrix.arch }}
           path: build/linux-${{ matrix.arch }}/
@@ -84,7 +84,7 @@ jobs:
         run: |
           sha256sum build/win64/* > build/win64/SHA256SUMS-windows-x64.txt
       - name: Upload artifact windows-x64
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: windows-x64
           path: build/win64/
@@ -114,7 +114,7 @@ jobs:
         run: |
            shasum -a 256 build/macos-${{ matrix.arch }}/* > build/macos-${{ matrix.arch }}/SHA256SUMS-macos-${{ matrix.arch }}.txt
       - name: Upload artifact macos-${{ matrix.arch }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: macos-${{ matrix.arch }}
           path: build/macos-${{ matrix.arch }}/
