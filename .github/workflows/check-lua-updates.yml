@@ -11,7 +11,7 @@ jobs:
     name: Check for new Lua releases
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -31,11 +31,12 @@ jobs:
           UPDATES_FOUND=false
           UPDATE_SUMMARY=""
 
-          for version in lua51 lua53 lua54; do
+          for version in lua51 lua53 lua54 lua55; do
             case $version in
               lua51) MAJOR_MINOR="5.1" ;;
               lua53) MAJOR_MINOR="5.3" ;;
               lua54) MAJOR_MINOR="5.4" ;;
+              lua55) MAJOR_MINOR="5.5" ;;
             esac
 
             CURRENT=$(get_current_version $MAJOR_MINOR)
@@ -62,11 +63,12 @@ jobs:
         if: steps.check.outputs.updates_found == 'true'
         run: |
           # Download new tarballs if version updates are found
-          for version in lua51 lua53 lua54; do
+          for version in lua51 lua53 lua54 lua55; do
             case $version in
               lua51) MAJOR_MINOR="5.1" ;;
               lua53) MAJOR_MINOR="5.3" ;;
               lua54) MAJOR_MINOR="5.4" ;;
+              lua55) MAJOR_MINOR="5.5" ;;
             esac
 
             VAR_NAME="UPDATE_${version}"
@@ -91,7 +93,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.check.outputs.updates_found == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: |

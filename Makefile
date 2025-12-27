@@ -66,7 +66,7 @@ macos: macos-x64
 all: linux-x64 linux-arm64 windows macos-x64 macos-arm64
 
 # Linux x64 targets
-linux-x64: lua51-linux-x64 lua53-linux-x64 lua54-linux-x64
+linux-x64: lua51-linux-x64 lua53-linux-x64 lua54-linux-x64 lua55-linux-x64
 
 lua51-linux-x64: VERSION := 5.1.5
 lua51-linux-x64:
@@ -89,8 +89,15 @@ lua54-linux-x64:
 	@mv lua-$(VERSION)/src/luac build/linux-x64/luac54
 	@rm -rf lua-$(VERSION)
 
+lua55-linux-x64: VERSION := 5.5.0
+lua55-linux-x64:
+	$(call build_lua_linux_x64,lua-${VERSION})
+	@mv lua-$(VERSION)/src/lua build/linux-x64/lua55
+	@mv lua-$(VERSION)/src/luac build/linux-x64/luac55
+	@rm -rf lua-$(VERSION)
+
 # Linux ARM64 targets
-linux-arm64: lua51-linux-arm64 lua53-linux-arm64 lua54-linux-arm64
+linux-arm64: lua51-linux-arm64 lua53-linux-arm64 lua54-linux-arm64 lua55-linux-arm64
 
 lua51-linux-arm64: VERSION := 5.1.5
 lua51-linux-arm64:
@@ -113,8 +120,15 @@ lua54-linux-arm64:
 	@mv lua-$(VERSION)/src/luac build/linux-arm64/luac54-linux-arm64
 	@rm -rf lua-$(VERSION)
 
+lua55-linux-arm64: VERSION := 5.5.0
+lua55-linux-arm64:
+	$(call build_lua_linux_arm64,lua-${VERSION})
+	@mv lua-$(VERSION)/src/lua build/linux-arm64/lua55-linux-arm64
+	@mv lua-$(VERSION)/src/luac build/linux-arm64/luac55-linux-arm64
+	@rm -rf lua-$(VERSION)
+
 # Windows x64 targets
-windows: lua51-windows lua53-windows lua54-windows
+windows: lua51-windows lua53-windows lua54-windows lua55-windows
 
 lua51-windows: VERSION := 5.1.5
 lua51-windows:
@@ -140,8 +154,16 @@ lua54-windows:
 	-@mv lua-$(VERSION)/src/lua54.dll build/win64/lua54.dll
 	@rm -rf lua-$(VERSION)
 
+lua55-windows: VERSION := 5.5.0
+lua55-windows:
+	-$(call build_lua_win64,lua-${VERSION})
+	-@mv lua-$(VERSION)/src/lua.exe build/win64/lua55.exe
+	-@mv lua-$(VERSION)/src/luac.exe build/win64/luac55.exe
+	-@mv lua-$(VERSION)/src/lua54.dll build/win64/lua55.dll
+	@rm -rf lua-$(VERSION)
+
 # macOS x64 targets
-macos-x64: lua51-macos-x64 lua53-macos-x64 lua54-macos-x64
+macos-x64: lua51-macos-x64 lua53-macos-x64 lua54-macos-x64 lua55-macos-x64
 
 lua51-macos-x64: VERSION := 5.1.5
 lua51-macos-x64:
@@ -165,7 +187,7 @@ lua54-macos-x64:
 	@rm -rf lua-$(VERSION)
 
 # macOS ARM64 targets
-macos-arm64: lua51-macos-arm64 lua53-macos-arm64 lua54-macos-arm64
+macos-arm64: lua51-macos-arm64 lua53-macos-arm64 lua54-macos-arm64 lua55-macos-arm64
 
 lua51-macos-arm64: VERSION := 5.1.5
 lua51-macos-arm64:
@@ -186,6 +208,13 @@ lua54-macos-arm64:
 	$(call build_lua_macos,lua-${VERSION},arm64)
 	@mv lua-$(VERSION)/src/lua build/macos-arm64/lua54-macos-arm64
 	@mv lua-$(VERSION)/src/luac build/macos-arm64/luac54-macos-arm64
+	@rm -rf lua-$(VERSION)
+
+lua55-macos-arm64: VERSION := 5.5.0
+lua55-macos-arm64:
+	$(call build_lua_macos,lua-${VERSION},arm64)
+	@mv lua-$(VERSION)/src/lua build/macos-arm64/lua55-macos-arm64
+	@mv lua-$(VERSION)/src/luac build/macos-arm64/luac55-macos-arm64
 	@rm -rf lua-$(VERSION)
 
 clean:
