@@ -16,7 +16,7 @@ Each platform provides both the Lua interpreter and the Lua bytecode compiler (l
 | macOS    | x64 (Intel)           | `luaVV-macos-x64`   | `luacVV-macos-x64`   | Native builds with Clang        |
 | macOS    | ARM64 (Apple Silicon) | `luaVV-macos-arm64` | `luacVV-macos-arm64` | Native builds with Clang        |
 
-*VV = Lua version (51, 53, or 54)*
+*VV = Lua version (51, 53, 54 or 55)*
 
 ## Download
 
@@ -29,6 +29,7 @@ Download the latest binaries from the [Releases page](https://github.com/dyne/lu
 | 5.1         | [lua51](https://github.com/dyne/luabinaries/releases/latest/download/lua51) | [luac51](https://github.com/dyne/luabinaries/releases/latest/download/luac51) |
 | 5.3         | [lua53](https://github.com/dyne/luabinaries/releases/latest/download/lua53) | [luac53](https://github.com/dyne/luabinaries/releases/latest/download/luac53) |
 | 5.4         | [lua54](https://github.com/dyne/luabinaries/releases/latest/download/lua54) | [luac54](https://github.com/dyne/luabinaries/releases/latest/download/luac54) |
+| 5.5         | [lua55](https://github.com/dyne/luabinaries/releases/latest/download/lua55) | [luac55](https://github.com/dyne/luabinaries/releases/latest/download/luac55) |
 
 ### Linux ARM64
 
@@ -37,6 +38,7 @@ Download the latest binaries from the [Releases page](https://github.com/dyne/lu
 | 5.1         | [lua51-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua51-linux-arm64) | [luac51-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac51-linux-arm64) |
 | 5.3         | [lua53-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua53-linux-arm64) | [luac53-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac53-linux-arm64) |
 | 5.4         | [lua54-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua54-linux-arm64) | [luac54-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac54-linux-arm64) |
+| 5.5         | [lua55-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua55-linux-arm64) | [luac55-linux-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac55-linux-arm64) |
 
 ### Windows x64
 
@@ -45,6 +47,7 @@ Download the latest binaries from the [Releases page](https://github.com/dyne/lu
 | 5.1         | [lua51.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua51.exe) | [luac51.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac51.exe) |
 | 5.3         | [lua53.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua53.exe) | [luac53.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac53.exe) |
 | 5.4         | [lua54.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua54.exe) | [luac54.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac54.exe) |
+| 5.5         | [lua55.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua55.exe) | [luac55.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac55.exe) |
 
 ### macOS x64 (Intel)
 
@@ -53,6 +56,7 @@ Download the latest binaries from the [Releases page](https://github.com/dyne/lu
 | 5.1         | [lua51-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/lua51-macos-x64) | [luac51-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/luac51-macos-x64) |
 | 5.3         | [lua53-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/lua53-macos-x64) | [luac53-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/luac53-macos-x64) |
 | 5.4         | [lua54-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/lua54-macos-x64) | [luac54-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/luac54-macos-x64) |
+| 5.5         | [lua55-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/lua55-macos-x64) | [luac55-macos-x64](https://github.com/dyne/luabinaries/releases/latest/download/luac55-macos-x64) |
 
 ### macOS ARM64 (Apple Silicon)
 
@@ -61,6 +65,7 @@ Download the latest binaries from the [Releases page](https://github.com/dyne/lu
 | 5.1         | [lua51-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua51-macos-arm64) | [luac51-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac51-macos-arm64) |
 | 5.3         | [lua53-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua53-macos-arm64) | [luac53-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac53-macos-arm64) |
 | 5.4         | [lua54-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua54-macos-arm64) | [luac54-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac54-macos-arm64) |
+| 5.5         | [lua55-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/lua55-macos-arm64) | [luac55-macos-arm64](https://github.com/dyne/luabinaries/releases/latest/download/luac55-macos-arm64) |
 
 ## Building
 
@@ -110,6 +115,7 @@ The versions of the released binaries are listed below, the respective sources a
 - lua-5.1.5.tar.gz (Feb 13 2012) `7d5ea1b9cb6aa0b59ca3dde1c6adcb57ef83a1ba8e5432c0ecd06bf439b3ad88`
 - lua-5.3.6.tar.gz (Sep 14 2020) `fc5fd69bb8736323f026672b1b7235da613d7177e72558893a0bdcd320466d60`
 - lua-5.4.8.tar.gz (May 21 2025) `4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae`
+- lua-5.5.8.tar.gz (Dec 15 2025) `57ccc32bbbd005cab75bcc52444052535af691789dba2b9016d5c50640d68b3d`
 
 To build static binaries ready to run everywhere, we use [Musl](https://musl.libc.org/).
 
@@ -139,7 +145,7 @@ All binaries are compressed with UPX and packaged with SHA256 checksums. Release
 
 This is not an "official" distribution of Lua binaries.
 
-Lua is Copyright © 1994–2023 Lua.org, PUC-Rio.
+Lua is Copyright © 1994–2025 Lua.org, PUC-Rio.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

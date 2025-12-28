@@ -28,7 +28,7 @@ BEGIN
       VALUE "FileDescription", "Lua ${version} binary by Denis Roio <jaromil@dyne.org>"
       VALUE "FileVersion", "${date}"
       VALUE "InternalName", "lua${vershort}"
-      VALUE "LegalCopyright", "Lua is Copyright (C) 1994-2023 by PUC-Rio"
+      VALUE "LegalCopyright", "Lua is Copyright (C) 1994-2025 by PUC-Rio"
       VALUE "OriginalFilename", "lua${vershort}.exe"
       VALUE "ProductName", "Lua"
       VALUE "ProductVersion", "${version}"

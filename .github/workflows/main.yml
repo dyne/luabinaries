@@ -10,6 +10,7 @@ on:
       - '*.md'
     branches:
       - main
+  workflow_dispatch: # Allow manual triggers
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -23,14 +24,14 @@ jobs:
       matrix:
         arch: [x64, arm64]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: short SHA of current commit
         id: sha
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: install apt-fast
-        uses: elijahr/setup-apt-fast@v0.0.1-dev.2
+        uses: elijahr/setup-apt-fast@v1.0.1-dev.3
       - name: install compiler and dependencies
         run: |
           sudo apt-fast update
@@ -50,7 +51,7 @@ jobs:
         run: |
           sha256sum build/linux-${{ matrix.arch }}/* > build/linux-${{ matrix.arch }}/SHA256SUMS-linux-${{ matrix.arch }}.txt
       - name: Upload artifact linux-${{ matrix.arch }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: linux-${{ matrix.arch }}
           path: build/linux-${{ matrix.arch }}/
@@ -61,14 +62,14 @@ jobs:
     name: 🏗️ build (Windows x64)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: short SHA of current commit
         id: sha
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: install apt-fast
-        uses: elijahr/setup-apt-fast@v0.0.1-dev.2
+        uses: elijahr/setup-apt-fast@v1.0.1-dev.3
       - name: install compiler and dependencies
         run: |
           sudo apt-fast update
@@ -98,11 +99,11 @@ jobs:
       matrix:
         include:
           - arch: x64
-            runner: macos-13
+            runner: macos-15-intel
           - arch: arm64
-            runner: macos-14
+            runner: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: short SHA of current commit
@@ -127,7 +128,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: download binary artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           path: |
             release
