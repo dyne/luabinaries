@@ -136,8 +136,8 @@ GitHub Actions automatically builds binaries using a matrix strategy:
 
 **macOS Builds** (Native runners):
 
-- **macos-x64**: Built on macOS 13 (Intel) runners
-- **macos-arm64**: Built on macOS 14 (Apple Silicon) runners
+- **macos-x64**: Built on macOS 15 (Intel) runners
+- **macos-arm64**: Built on macOS 15 (Apple Silicon) runners
 
 All binaries are compressed with UPX and packaged with SHA256 checksums. Releases are automatically created and tagged with the git commit hash.
 
