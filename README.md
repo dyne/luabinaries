@@ -42,12 +42,12 @@ Download the latest binaries from the [Releases page](https://github.com/dyne/lu
 
 ### Windows x64
 
-| Lua Version | Interpreter                                                                         | Compiler                                                                              |
-| ----------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| 5.1         | [lua51.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua51.exe) | [luac51.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac51.exe) |
-| 5.3         | [lua53.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua53.exe) | [luac53.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac53.exe) |
-| 5.4         | [lua54.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua54.exe) | [luac54.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac54.exe) |
-| 5.5         | [lua55.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua55.exe) | [luac55.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac55.exe) |
+| Lua Version | Interpreter                                                                         | Compiler                                                                              | Shared library                                                                        |
+| ----------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| 5.1         | [lua51.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua51.exe) | [luac51.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac51.exe) | [lua51.dll](https://github.com/dyne/luabinaries/releases/latest/download/lua51.dll) |
+| 5.3         | [lua53.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua53.exe) | [luac53.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac53.exe) | [lua53.dll](https://github.com/dyne/luabinaries/releases/latest/download/lua53.dll) |
+| 5.4         | [lua54.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua54.exe) | [luac54.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac54.exe) | [lua54.dll](https://github.com/dyne/luabinaries/releases/latest/download/lua54.dll) |
+| 5.5         | [lua55.exe](https://github.com/dyne/luabinaries/releases/latest/download/lua55.exe) | [luac55.exe](https://github.com/dyne/luabinaries/releases/latest/download/luac55.exe) | [lua55.dll](https://github.com/dyne/luabinaries/releases/latest/download/lua55.dll) |
 
 ### macOS x64 (Intel)
 
